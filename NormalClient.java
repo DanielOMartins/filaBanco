@@ -7,6 +7,7 @@ public class NormalClient {
     public NormalClient(int size) {
         vector = new String[size];
         end = 0;
+        age = 0;
     }
 
     //Getters
@@ -24,7 +25,6 @@ public class NormalClient {
     public boolean isEmpty() { // verifica se está vazio
         return (end == 0);
     }
-
     public boolean isFull() { // verifica se está cheio
         return (end == vector.length);
     }
@@ -66,9 +66,9 @@ public class NormalClient {
 
         for (int i = 0; i < end; i++) {
             if(i == (end - 1)){
-                elem = elem + vector[i] + ";";
+                elem = elem + vector[i];
             }else{
-                elem = elem + vector[i] + " - ";
+                elem = elem + vector[i] + "-";
             }
         }
 
