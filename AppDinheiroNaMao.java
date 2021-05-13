@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class AppDinheiroNaMao {
     public static void main(String[] args) {
@@ -7,6 +7,7 @@ public class AppDinheiroNaMao {
         int finish = 0;
 
         Scanner scan = new Scanner(System.in);
+        Scanner read = new Scanner(System.in);
         ManageAttendance manager = new ManageAttendance(6);
 
         do{
@@ -23,31 +24,41 @@ public class AppDinheiroNaMao {
             
             if(option == 1){
                 System.out.printf("Digite o nome do Cliente: ");
-                name = scan.nextLine();
-                System.out.println("Digite a idade do Cliente: ");
+                name = read.nextLine();
+                System.out.printf("Digite a idade do Cliente: ");
                 age = scan.nextInt();
 
                 manager.addClient(name, age);
             }
 
             if(option == 2){
+                if(manager.showClient() == null){
+                    System.out.println("Não tem próximo cliente na fila.");
+                }
                 System.out.println("O próximo da fila é " + manager.showClient());
             }
 
             if(option == 3){
-                System.out.println("O cliente " + manager.getNext());
+                if(manager.showClient() == null){
+                    System.out.println("Não tem clientes para atender.");
+                }else{
+                    System.out.println("O cliente " + manager.getNext() + " foi atendido");
+                }
             }
 
             if(option == 4){
-                manager.showQueues();
+                System.out.println(manager.showQueues());
             }
 
             if(option == 5){
                 if(manager.isEmpty()){
                     finish = 1;
+                }else{
+                    System.out.println("Não pode finalizar pois ainda tem clientes na fila.");
                 }
             }
 
         }while(finish != 1);
+        
     }
 }

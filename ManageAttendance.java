@@ -53,14 +53,14 @@ public class ManageAttendance {
     }
 
     public String showQueues(){
+        if(elderly.isEmpty() && normal.isEmpty()){
+            return "Idoso:Vazio;Normal:Vazio";
+        }
         if(elderly.isEmpty()){
             return "Idoso:Vazio;" + "Normal:" + normal.show();
         }
         if(normal.isEmpty()){
             return "Idoso:" + elderly.show() + "Normal:Vazio";
-        }
-        if(elderly.isEmpty() && normal.isEmpty()){
-            return "Idoso:Vazio;Normal:Vazio";
         }
         return "Idoso:" + elderly.show() + "Normal:" + normal.show();
     }
