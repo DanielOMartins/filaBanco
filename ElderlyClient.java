@@ -68,7 +68,7 @@ public class ElderlyClient {
             if(i == (end - 1)){
                 elem = elem + vector[i] + ";";
             }else{
-                elem = elem + vector[i] + " - ";
+                elem = elem + vector[i] + "-";
             }
         }
 
