@@ -1,26 +1,53 @@
+import java.util.Scanner;
+
 public class AppDinheiroNaMao {
     public static void main(String[] args) {
-        ElderlyClient fila = new ElderlyClient(4);
+        String name;
+        int age, option;
+        int finish = 0;
 
-        System.out.println("Vazia: " + fila.isEmpty());
-        System.out.println("Cheia: " + fila.isFull());
+        Scanner scan = new Scanner(System.in);
+        ManageAttendance manager = new ManageAttendance(6);
 
-        fila.enqueue("Daniel", 18);
-        
-        fila.enqueue("Bianca", 20);
-        fila.enqueue("Eduardo", 40);
-        fila.enqueue("Angelita", 25);
+        do{
+            System.out.println("**********************************************");
+            System.out.println("1 – Chegada do cliente na agência.");
+            System.out.println("2 – Verificar quem é o próximo a ser atendido.");
+            System.out.println("3 – Atender um cliente.");
+            System.out.println("4 – Exibir as filas. (idoso e não idoso)");
+            System.out.println("5 – Finalizar o programa.");
+            System.out.println("**********************************************");
 
-        System.out.println("Vazia: " + fila.isEmpty());
-        System.out.println("Cheia: " + fila.isFull());
+            System.out.printf("O que deseja fazer: ");
+            option = scan.nextInt();
+            
+            if(option == 1){
+                System.out.printf("Digite o nome do Cliente: ");
+                name = scan.nextLine();
+                System.out.println("Digite a idade do Cliente: ");
+                age = scan.nextInt();
 
-        System.out.println("Primeiro da fila: " + fila.peek());
-        System.out.println("Qtde de números na fila: " + fila.size());
-        System.out.println("Fila: " + fila.show());
+                manager.addClient(name, age);
+            }
 
-        System.out.println("\nRemovendo 1 valor: " + fila.dequeue());
-        System.out.println("Fila: " + fila.show());
-        System.out.println("Primeiro da fila: " + fila.peek());
-        System.out.println("Qtde de números na fila: " + fila.size());
+            if(option == 2){
+                System.out.println("O próximo da fila é " + manager.showClient());
+            }
+
+            if(option == 3){
+                System.out.println("O cliente " + manager.getNext());
+            }
+
+            if(option == 4){
+                manager.showQueues();
+            }
+
+            if(option == 5){
+                if(manager.isEmpty()){
+                    finish = 1;
+                }
+            }
+
+        }while(finish != 1);
     }
 }
